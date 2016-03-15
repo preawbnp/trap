@@ -11,23 +11,28 @@ var GameLayer = cc.LayerColor.extend({
       this.tap = new Tap();
       this.addChild ( this.tap );
       this.tap.setPosition( new cc.Point(270,430) );
-//      this.tap.scheduleUpdate();
-//      this.addKeyboardHandlers();
+       
+      this.addKeyboardHandlers();
+      
+      this.scoreLabel = cc.LabelTTF.create( '0', 'pix Chicago', 80 );
+      this.scoreLabel.setPosition( new cc.Point( 652, 370 ) );
+      this.addChild( this.scoreLabel );
+      
       return true;
-  }
-//    addKeyboardHandlers: function() {
-//        var self = this;
-//        cc.eventManager.addListener({
-//            event: cc.EventListener.KEYBOARD,
-//            onKeyPressed : function( keyCode, event ) {
-//                self.onKeyDown( keyCode, event );
-//            },
-//            onKeyReleased: function( keyCode, event ) {
-//                self.onKeyUp( keyCode, event );
-//            }
-//        }, this);
-//    }
-// 
+    },
+    onSpacebar: function( keyCode, event ){
+        //if position +/- on space will recieve the score
+        console.log( 'Space: ' + keyCode.toString() ); 
+    },
+    addKeyboardHandlers: function() {
+        var self = this;
+        cc.eventManager.addListener({
+            event: cc.EventListener.KEYBOARD,
+            onKeyPressed : function( keyCode, event ) {
+                self.onSpacebar( keyCode, event );
+            }
+        }, this);
+    }
 });
 
 var StartScene = cc.Scene.extend({
