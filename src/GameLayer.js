@@ -1,24 +1,28 @@
 var GameLayer = cc.LayerColor.extend({
-  init: function() {     
-      this.background = new Background();
-      this.addChild ( this.background );
-      this.background.setPosition ( new cc.Point(400,300) );
+    init: function() {     
+        this.background = new Background();
+        this.addChild ( this.background );
+        this.background.setPosition ( new cc.Point(400,300) );
       
-      this.spacebar = new Spacebar();
-      this.addChild ( this.spacebar );
-      this.spacebar.setPosition ( new cc.Point(270,75) );
+        this.spacebar = new Spacebar();
+        this.addChild ( this.spacebar );
+        this.spacebar.setPosition ( new cc.Point(270,75) );
       
-      this.tap = new Tap();
-      this.addChild ( this.tap );
-      this.tap.setPosition( new cc.Point(270,430) );
-       
-      this.addKeyboardHandlers();
+        this.tap = new Tap();
+//        this.tap.setPosition( new cc.Point(270,430) );
+        this.tap.setPosition( new cc.Point( screenWidth / (800/270), screenHeight / 1.4 ) );
+        this.addChild ( this.tap );
+        this.tap.scheduleUpdate();            
+   
+        this.addKeyboardHandlers();
       
-      this.scoreLabel = cc.LabelTTF.create( '0', 'pix Chicago', 80 );
-      this.scoreLabel.setPosition( new cc.Point( 652, 370 ) );
-      this.addChild( this.scoreLabel );
+      // create var score for show on screen   
+        this.scoreLabel = cc.LabelTTF.create( '0' , 'pix Chicago', 65 );
+      // this.scoreLabel.setString( Integer.parseInt( this.scoreLabel.String ) + 1);
+        this.scoreLabel.setPosition( new cc.Point( 652, 360 ) );
+        this.addChild( this.scoreLabel );
       
-      return true;
+        return true;
     },
     onSpacebar: function( keyCode, event ){
         //if position +/- on space will recieve the score

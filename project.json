@@ -16,7 +16,6 @@
         "src/GameLayer.js",
         "src/Background.js",
         "src/Spacebar.js",
-        "src/Tap.js"
-        
+        "src/Tap.js"        
     ]
 }
