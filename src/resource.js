@@ -8,8 +8,9 @@ var res = {
 //    space4_png: "res/images/space4.png",
 //    space5_png: "res/images/space5.png",
 //    space6_png: "res/images/space6.png",
-    space_miss: "res/images/space-miss.png",
-    space_press: "res/images/space-press.png",
+    space_miss: "res/images/space-onmiss.png",
+    space_press: "res/images/space-onpress.png",
+    space: "res/images/space-press.png",
     bar4_png: "res/images/bar4.png"
 
     

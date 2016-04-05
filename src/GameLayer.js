@@ -9,7 +9,6 @@ var GameLayer = cc.LayerColor.extend({
         this.spacebar.setPosition ( new cc.Point(270,75) );
       
         this.tap = new Tap();
-//        this.tap.setPosition( new cc.Point(270,430) );
         this.tap.setPosition( new cc.Point( screenWidth / (800/270), screenHeight / 1.4 ) );
         this.addChild ( this.tap );
         this.tap.scheduleUpdate();            
@@ -25,8 +24,18 @@ var GameLayer = cc.LayerColor.extend({
         return true;
     },
     onSpacebar: function( keyCode, event ){
-        //if position +/- on space will recieve the score
-        console.log( 'Space: ' + keyCode.toString() ); 
+        console.log( 'Space: ' + keyCode.toString() );
+        var posTap = this.tap.getPosition();
+        if ( posTap.x == 270 && posTap.y > 75 && posTap.y < 90 ){
+            this.textLabelGreat = cc.LabelTTF.create( 'GREAT!' , 'pix Chicago', 65 );
+            this.textLabelGreat.setPosition( new cc.Point( 652 , 420 ) );
+            this.spacebar.onpress();
+        }
+        else {
+            this.textLabelMiss = cc.LabelTTF.create( 'MISS!' , 'pix Chicago', 65 );
+            this.textLabelMiss.setPosition( new cc.Point( 652 , 420 ) );
+            this.spacebar.miss();
+        }
     },
     addKeyboardHandlers: function() {
         var self = this;
