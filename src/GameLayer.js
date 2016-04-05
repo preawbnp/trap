@@ -7,7 +7,7 @@ var GameLayer = cc.LayerColor.extend({
         this.spacebar = new Spacebar();
         this.addChild ( this.spacebar );
         this.spacebar.setPosition ( new cc.Point(270,75) );
-      
+    
         this.tap = new Tap();
         this.tap.setPosition( new cc.Point( screenWidth / (800/270), screenHeight / 1.4 ) );
         this.addChild ( this.tap );
@@ -27,13 +27,12 @@ var GameLayer = cc.LayerColor.extend({
         console.log( 'Space: ' + keyCode.toString() );
         var posTap = this.tap.getPosition();
         if ( posTap.x == 270 && posTap.y > 75 && posTap.y < 90 ){
-            this.textLabelGreat = cc.LabelTTF.create( 'GREAT!' , 'pix Chicago', 65 );
-            this.textLabelGreat.setPosition( new cc.Point( 652 , 420 ) );
+            this.textGreat();
+//            this.updateScore();
             this.spacebar.onpress();
         }
         else {
-            this.textLabelMiss = cc.LabelTTF.create( 'MISS!' , 'pix Chicago', 65 );
-            this.textLabelMiss.setPosition( new cc.Point( 652 , 420 ) );
+            this.textMiss();
             this.spacebar.miss();
         }
     },
@@ -45,6 +44,18 @@ var GameLayer = cc.LayerColor.extend({
                 self.onSpacebar( keyCode, event );
             }
         }, this);
+    },
+    textGreat: function(){
+        this.textLabelGreat = cc.LabelTTF.create( 'GREAT!' , 'pix Chicago' , 40 );
+        this.textLabelGreat.setPosition( new cc.Point( 652 , 180 ) );
+        this.addChild( this.textLabelGreat );
+//            delete this.textLabelGreat;
+    },
+    textMiss: function(){
+        this.textLabelMiss = cc.LabelTTF.create( 'MISS!' , 'pix Chicago' , 40 );
+        this.textLabelMiss.setPosition( new cc.Point( 652 , 180 ) );
+        this.addChild( this.textLabelMiss );
+//            delete this.textLabelMiss;
     }
 });
 

@@ -13,7 +13,7 @@ var Tap = cc.Sprite.extend({
                 this.setPosition( new cc.Point( pos.x , ( pos.y - this.vy ) ));  
             else {
                 this.setPosition ( screenWidth / (800/270), screenHeight / 1.4 );
-                var moveAction = cc.MoveTo.create( 0.5 , pos.x , ( pos.y - this.vy ) );
+                var moveAction = cc.MoveTo.create( 0.5 , pos.x , ( pos.y - (this.vy-0.2) ) );
                 this.runAction( moveAction );
             }
             this.vy += 0.005;
