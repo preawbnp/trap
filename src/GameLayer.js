@@ -28,12 +28,12 @@ var GameLayer = cc.LayerColor.extend({
         var posTap = this.tap.getPosition();
         if ( posTap.x == 270 && posTap.y > 75 && posTap.y < 90 ){
             this.textGreat();
-//            this.updateScore();
             this.spacebar.onpress();
         }
         else {
             this.textMiss();
             this.spacebar.miss();
+            this.gameOver();
         }
     },
     addKeyboardHandlers: function() {
@@ -48,14 +48,27 @@ var GameLayer = cc.LayerColor.extend({
     textGreat: function(){
         this.textLabelGreat = cc.LabelTTF.create( 'GREAT!' , 'pix Chicago' , 40 );
         this.textLabelGreat.setPosition( new cc.Point( 652 , 180 ) );
+        this.textLabelGreat.setColor(new cc.Color (83,205,213));
         this.addChild( this.textLabelGreat );
-//            delete this.textLabelGreat;
+        this.textLabelGreat.runAction( cc.fadeTo(2,0)); //time,opacity
     },
     textMiss: function(){
         this.textLabelMiss = cc.LabelTTF.create( 'MISS!' , 'pix Chicago' , 40 );
         this.textLabelMiss.setPosition( new cc.Point( 652 , 180 ) );
+        this.textLabelMiss.setColor(new cc.Color (218,212,94));
         this.addChild( this.textLabelMiss );
-//            delete this.textLabelMiss;
+        this.textLabelMiss.runAction( cc.fadeTo(2,0));
+    },
+    updateScore: function(){
+        this.scoreLabel.setString( ( parseInt( this.scoreLabel.String ) ) + 1);
+        this.addChild( this.scoreLabel );
+	},
+    removeTextGreat: function(){
+        this.textLabelGreat.setString("");
+        this.addChild( this.textLabelGreat );
+    },
+    gameOver: function() {
+        cc.director.runScene( new EndGame() );
     }
 });
 
