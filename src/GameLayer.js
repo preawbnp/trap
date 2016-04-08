@@ -16,8 +16,8 @@ var GameLayer = cc.LayerColor.extend({
         this.addKeyboardHandlers();
       
       // create var score for show on screen   
-        this.scoreLabel = cc.LabelTTF.create( '0' , 'pix Chicago', 65 );
-      // this.scoreLabel.setString( Integer.parseInt( this.scoreLabel.String ) + 1);
+        this.score = 0;
+        this.scoreLabel = cc.LabelTTF.create( '' + this.score , 'pix Chicago', 65 );
         this.scoreLabel.setPosition( new cc.Point( 652, 360 ) );
         this.addChild( this.scoreLabel );
       
@@ -26,14 +26,15 @@ var GameLayer = cc.LayerColor.extend({
     onSpacebar: function( keyCode, event ){
         console.log( 'Space: ' + keyCode.toString() );
         var posTap = this.tap.getPosition();
-        if ( posTap.x == 270 && posTap.y > 75 && posTap.y < 90 ){
+        if ( posTap.x == 270 && posTap.y > 75 && posTap.y < 130 ){
             this.textGreat();
+            this.updateScore();
+            console.log( 'Score: ' + this.score );
             this.spacebar.onpress();
         }
         else {
             this.textMiss();
             this.spacebar.miss();
-//            this.gameOver();
         }
     },
     addKeyboardHandlers: function() {
@@ -42,11 +43,10 @@ var GameLayer = cc.LayerColor.extend({
             event: cc.EventListener.KEYBOARD,
             onKeyPressed : function( keyCode, event ) {
                 self.onSpacebar( keyCode, event );
+            },
+            onKeyReleased: function( keyCode, event ){
+                self.gameOver();
             }
-//            ,
-//            onKeyReleased: function( keyCode, event ){
-//                self.gameOver();
-//            }
         }, this);
     },
     textGreat: function(){
@@ -64,18 +64,9 @@ var GameLayer = cc.LayerColor.extend({
         this.textLabelMiss.runAction( cc.fadeTo(1,0));
     },
     updateScore: function(){
-        this.scoreLabel.setString( ( parseInt( this.scoreLabel.String ) ) + 1);
+        this.scoreLabel.setString( this.score + 1 );
         this.addChild( this.scoreLabel );
-	},
-    removeTextGreat: function(){
-        this.textLabelGreat.setString("");
-        this.addChild( this.textLabelGreat );
-    },
-    gameOver: function() {
-        cc.director.runScene( new EndGame() );
-//        this.gameover = new GameOverFrame();
-        
-    }
+	}
 });
 
 var StartScene = cc.Scene.extend({
