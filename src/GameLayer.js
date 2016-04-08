@@ -33,7 +33,7 @@ var GameLayer = cc.LayerColor.extend({
         else {
             this.textMiss();
             this.spacebar.miss();
-            this.gameOver();
+//            this.gameOver();
         }
     },
     addKeyboardHandlers: function() {
