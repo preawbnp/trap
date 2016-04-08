@@ -20,3 +20,4 @@ var EndGame = cc.Scene.extend({
     this.addChild( layer );
   }
 });
+

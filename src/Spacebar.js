@@ -13,6 +13,8 @@ var Spacebar = cc.Sprite.extend({
         this.initWithFile( 'res/images/space-onpress.png' );
     },
     gameOver: function() {
-        cc.director.runScene( new EndGame() );
+       setTimeout( function() { 
+   cc.director.runScene( new EndGame() );  
+  }, 500 );
     }
 });

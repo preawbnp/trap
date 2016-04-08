@@ -21,6 +21,7 @@ var Tap = cc.Sprite.extend({
         }
         else
             this.started = false;
+        console.log( 'vy: ' + this.vy );
     }
 });
         

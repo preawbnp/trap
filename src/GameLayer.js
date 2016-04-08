@@ -43,6 +43,10 @@ var GameLayer = cc.LayerColor.extend({
             onKeyPressed : function( keyCode, event ) {
                 self.onSpacebar( keyCode, event );
             }
+//            ,
+//            onKeyReleased: function( keyCode, event ){
+//                self.gameOver();
+//            }
         }, this);
     },
     textGreat: function(){
@@ -50,14 +54,14 @@ var GameLayer = cc.LayerColor.extend({
         this.textLabelGreat.setPosition( new cc.Point( 652 , 180 ) );
         this.textLabelGreat.setColor(new cc.Color (83,205,213));
         this.addChild( this.textLabelGreat );
-        this.textLabelGreat.runAction( cc.fadeTo(2,0)); //time,opacity
+        this.textLabelGreat.runAction( cc.fadeTo(1,0)); //time,opacity
     },
     textMiss: function(){
         this.textLabelMiss = cc.LabelTTF.create( 'MISS!' , 'pix Chicago' , 40 );
         this.textLabelMiss.setPosition( new cc.Point( 652 , 180 ) );
         this.textLabelMiss.setColor(new cc.Color (218,212,94));
         this.addChild( this.textLabelMiss );
-        this.textLabelMiss.runAction( cc.fadeTo(2,0));
+        this.textLabelMiss.runAction( cc.fadeTo(1,0));
     },
     updateScore: function(){
         this.scoreLabel.setString( ( parseInt( this.scoreLabel.String ) ) + 1);
@@ -69,6 +73,8 @@ var GameLayer = cc.LayerColor.extend({
     },
     gameOver: function() {
         cc.director.runScene( new EndGame() );
+//        this.gameover = new GameOverFrame();
+        
     }
 });
 
