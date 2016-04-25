@@ -4,8 +4,8 @@ var res = {
     space_miss: "res/images/space-onmiss.png",
     space_press: "res/images/space-onpress.png",
     space: "res/images/space-press.png",
-    bar4_png: "res/images/bar4.png"
-//    effects_fall: 'res/effects/Twerk It Like Miley.mp3'
+    bar4_png: "res/images/bar4.png",
+    music: 'res/effects/Sunset Route.wav'
     
 };
 

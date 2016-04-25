@@ -20,7 +20,9 @@ var GameLayer = cc.LayerColor.extend({
         this.scoreLabel = cc.LabelTTF.create( '' + this.score , 'pix Chicago', 65 );
         this.scoreLabel.setPosition( new cc.Point( 652, 360 ) );
         this.addChild( this.scoreLabel );
-      
+        
+        this.playMusic();
+        
         return true;
     },
     onSpacebar: function( keyCode, event ){
@@ -28,12 +30,13 @@ var GameLayer = cc.LayerColor.extend({
         var posTap = this.tap.getPosition();
         if ( posTap.x == 270 && posTap.y > 75 && posTap.y < 130 ){
             this.textGreat();
-            this.updateScore();
             console.log( 'Score: ' + this.score );
             this.spacebar.onpress();
+            this.updateScore();
         }
         else {
             this.textMiss();
+            this.stopMusic();
             this.spacebar.miss();
         }
     },
@@ -66,7 +69,13 @@ var GameLayer = cc.LayerColor.extend({
     updateScore: function(){
         this.scoreLabel.setString( this.score + 1 );
         this.addChild( this.scoreLabel );
-	}
+	},
+    playMusic: function(){
+        cc.audioEngine.playMusic( 'res/effects/Sunset Route.wav' , true );
+    },
+    stopMusic: function(){
+        cc.audioEngine.stopMusic();
+    }
 });
 
 var StartScene = cc.Scene.extend({

@@ -14,7 +14,7 @@ var Spacebar = cc.Sprite.extend({
     },
     gameOver: function() {
        setTimeout( function() { 
-   cc.director.runScene( new EndGame() );  
-  }, 500 );
+            cc.director.runScene( new EndGame() );  
+        }, 500 );
     }
 });
