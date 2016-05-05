@@ -12,6 +12,7 @@ var GameOverScene = cc.LayerColor.extend({
         this.scoreLabel.setPosition( new cc.Point( 290, 210 ) );
         this.addChild( this.scoreLabel );
         
+        this.addKeyboardHandlers();
     },
     EndScene: function() {
         this.endScene = new EndScene();
@@ -20,6 +21,19 @@ var GameOverScene = cc.LayerColor.extend({
     },
     playMusic: function(){
         cc.audioEngine.playMusic( 'res/effects/hahaha.mp3' );
+    },
+    addKeyboardHandlers: function(){
+        var self = this;
+	       cc.eventManager.addListener({
+		      event: cc.EventListener.KEYBOARD,
+		      onKeyPressed : function( keyCode, event ) {
+		          self.restart( keyCode, event );
+	           }
+	       }, this);
+    },
+    restart: function( keyCode ){
+        if ( keyCode == 82 )
+            setTimeout( function() { cc.director.runScene( new StartScene() ); }, 500 );
     }
 });
 
