@@ -5,7 +5,10 @@ var res = {
     space_press: "res/images/space-onpress.png",
     space: "res/images/space-press.png",
     bar4_png: "res/images/bar4.png",
-    music: 'res/effects/Sunset Route.wav'
+    music: 'res/effects/Sunset Route.wav',
+    laugh: 'res/effects/hahaha.mp3',
+    press: 'res/effects/Beep8.wav',
+    fail: 'res/effects/fail.mp3'
     
 };
 

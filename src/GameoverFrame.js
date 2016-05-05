@@ -9,6 +9,5 @@ var GameOverFrame = cc.Sprite.extend({
         animation.setDelayPerUnit( 0.2 );
         var movingAction = cc.RepeatForever.create( cc.Animate.create( animation ) );
         this.runAction( movingAction );
-        
     }
 });
