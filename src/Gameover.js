@@ -32,8 +32,10 @@ var GameOverScene = cc.LayerColor.extend({
 	       }, this);
     },
     restart: function( keyCode ){
-        if ( keyCode == 82 )
+        if ( keyCode == 82 ){
             setTimeout( function() { cc.director.runScene( new StartScene() ); }, 500 );
+            score = 0;
+        }
     }
 });
 
