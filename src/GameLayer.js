@@ -1,4 +1,5 @@
 var score = 0;
+var highScore = 0;
 
 var GameLayer = cc.LayerColor.extend({
 	init: function() {    
@@ -28,12 +29,14 @@ var GameLayer = cc.LayerColor.extend({
 },
 	onSpacebar: function( keyCode, event ){
 	var posTap = this.tap.getPosition();
-	if ( posTap.y >= 55 && posTap.y <= 100 ){
+	if ( posTap.y >= 50 && posTap.y <= 105 ){
 		if ( keyCode == 32 ){
 			this.updatePressed();
             this.updateScore();
             this.tap.setPosition( new cc.Point( 270 , 429 ));
             this.vy += 0.03;
+            if ( highScore <= score )
+                highScore = score;
             console.log( "score : " + score );
 		}
 	}

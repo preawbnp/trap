@@ -10,17 +10,17 @@ var Tap = cc.Sprite.extend({
     update: function( dt ) {
         var pos = this.getPosition();
         if ( pos.y < 55 ) {
-            this.updateUnpressed();
             this.textMiss();
+            this.updateUnpressed();
             console.log("YOU DIE!!");
         }
         else if ( pos.y >= 0 ){
-            this.setPosition( new cc.Point( pos.x , ( pos.y - (this.vy/2) ) ));  
+            this.setPosition( new cc.Point( pos.x , ( pos.y - this.vy ) ));  
             this.vy += 0.02;
         }
         else {
             this.setPosition ( screenWidth / (800/270) , screenHeight / 1.4 );
-            var moveAction = cc.MoveTo.create( 0.5 , pos.x , ( pos.y - Math.abs(this.vy/2) ) );
+            var moveAction = cc.MoveTo.create( 0.5 , pos.x , ( pos.y - Math.abs(this.vy) ) );
             this.runAction( moveAction );
         }
     },

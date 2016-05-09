@@ -9,6 +9,9 @@ var FirstScene = cc.LayerColor.extend({
         
         this.button();
         this.playMusic();
+        this.playScene();
+        this.addKeyboardHandlers();
+        
     },
     button: function(){
         this.startButtonItem = new cc.MenuItemImage('res/images/start.png',
@@ -26,6 +29,20 @@ var FirstScene = cc.LayerColor.extend({
     },
     playEffect: function(){
         cc.audioEngine.playEffect( 'res/effects/button1.wav' );
+    },
+    playScene: function( keyCode ){
+        if ( keyCode == 32 || keyCode == 13 ){
+            cc.director.runScene( cc.TransitionShrinkGrow.create( 0.5,new StartScene()));
+        }
+    },
+    addKeyboardHandlers: function(){
+        var self = this;
+	       cc.eventManager.addListener({
+		      event: cc.EventListener.KEYBOARD,
+		      onKeyPressed : function( keyCode, event ) {
+		          self.playScene( keyCode, event );
+	           }
+	       }, this);
     }
 });
 

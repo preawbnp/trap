@@ -5,7 +5,6 @@ var Spacebar = cc.Sprite.extend({
        this.initWithFile( 'res/images/space-press.png' ); 
    },
     miss: function(){
-//        this.setPosition ( new cc.Point(270,75) );
         this.initWithFile( 'res/images/space-onmiss.png' );
         if (count < 1){
             this.playEffectFail();
@@ -16,12 +15,12 @@ var Spacebar = cc.Sprite.extend({
         this.gameOver();
     },
     onpress: function(){
-//        this.setPosition ( new cc.Point(270,75) );
         this.initWithFile( 'res/images/space-onpress.png' );
         this.playEffectPress();
     },
     gameOver: function() {
-       setTimeout( function() { cc.director.runScene( new EndGame() ); }, 500 );
+//       setTimeout( function() { cc.director.runScene( new EndGame() ); }, 500 );
+        cc.director.runScene( cc.TransitionFade.create( 2 ,new EndGame()));
     },
     playEffectPress: function(){
         cc.audioEngine.playEffect( 'res/effects/Beep8.wav' );
