@@ -1,6 +1,4 @@
 var score = 0;
-var count = 0;
-var num = 111;
 
 var GameLayer = cc.LayerColor.extend({
 	init: function() {     
@@ -15,8 +13,11 @@ var GameLayer = cc.LayerColor.extend({
 	this.tap = new Tap();
 	this.tap.setPosition( new cc.Point( screenWidth / (800/270), screenHeight / 1.4 ) );
 	this.addChild ( this.tap );
-
-	this.tap.scheduleUpdate();            
+    
+    
+    this.scheduleUpdate();
+    this.tap.scheduleUpdate();    
+    this.tap.update();
 	this.addKeyboardHandlers();
 
 	this.scoreLabel = cc.LabelTTF.create( '0' , 'pix Chicago', 65 );
@@ -24,31 +25,30 @@ var GameLayer = cc.LayerColor.extend({
 	this.addChild( this.scoreLabel );
 
 	this.playMusic();
-
+        
 	return true;
+},
+    update: function(){
+    var posTap = this.tap.getPosition();
+	if ( posTap.y >= 0 && posTap.y < 55 ){
+            console.log('*****');
+			this.updateUnpressed();
+    }
 },
 	onSpacebar: function( keyCode, event ){
 	var posTap = this.tap.getPosition();
-	if ( posTap.x == 270 && posTap.y >= 75 && posTap.y <= 135 ){
+	if ( posTap.y >= 55 && posTap.y <= 135 ){
 		if ( keyCode == 32 ){
-			this.textGreat();
-			this.spacebar.onpress();
-			this.updateScore();
-		}
-		else {
-			this.tap.unscheduleUpdate();
-            this.tap.removeChild();
-			this.textMiss();
-			this.stopMusic();
-			this.spacebar.miss();
+            console.log('kkkkkk');
+			this.updatePressed();
+            this.updateScore();
+            this.tap.setPosition( new cc.Point( 270 , 429 ));
+            this.vy += 0.03;
 		}
 	}
 	else {
-		this.tap.unscheduleUpdate();
-        this.tap.removeChild();
-		this.textMiss();
-		this.stopMusic();
-		this.spacebar.miss();
+            console.log('-3-');
+		    this.updateUnpressed();
 	}
 },
 	addKeyboardHandlers: function() {
@@ -82,11 +82,22 @@ var GameLayer = cc.LayerColor.extend({
 	this.scoreLabel.setString( score );
 },
 	playMusic: function(){
-	cc.audioEngine.playMusic( 'res/effects/Sunset Route.wav' , true );
-},
+	   cc.audioEngine.playMusic( 'res/effects/Sunset Route.wav' , true );
+    },
 	stopMusic: function(){
-	cc.audioEngine.stopMusic();
-}
+	   cc.audioEngine.stopMusic();
+    },
+    updatePressed: function(){
+        this.textGreat();
+        this.spacebar.onpress();
+    },
+    updateUnpressed: function(){
+        this.tap.unscheduleUpdate();
+        this.tap.removeChild();
+        this.textMiss();
+        this.stopMusic();
+		this.spacebar.miss();
+    }
 });
 
 var StartScene = cc.Scene.extend({

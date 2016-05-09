@@ -8,7 +8,6 @@ var GameOverScene = cc.LayerColor.extend({
         this.score = score;
         this.scoreLabel = cc.LabelTTF.create( this.score + '' , 'pix Chicago', 40 );
         this.scoreLabel.setColor( new cc.Color( 68, 63, 62, 65 ) );
-
         this.scoreLabel.setPosition( new cc.Point( 290, 210 ) );
         this.addChild( this.scoreLabel );
         
@@ -20,7 +19,7 @@ var GameOverScene = cc.LayerColor.extend({
         this.addChild( this.endScene );
     },
     playMusic: function(){
-        cc.audioEngine.playMusic( 'res/effects/hahaha.mp3' );
+//        cc.audioEngine.playMusic( 'res/effects/hahaha.mp3' );
     },
     addKeyboardHandlers: function(){
         var self = this;
@@ -33,7 +32,7 @@ var GameOverScene = cc.LayerColor.extend({
     },
     restart: function( keyCode ){
         if ( keyCode == 82 ){
-            setTimeout( function() { cc.director.runScene( new StartScene() ); }, 500 );
+            cc.director.runScene( new StartScene() );
             score = 0;
         }
     }
