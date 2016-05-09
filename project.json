@@ -18,6 +18,8 @@
         "src/Spacebar.js",
         "src/Tap.js",
         "src/Gameover.js",
-        "src/GameoverFrame.js"
+        "src/GameoverFrame.js",
+        "src/StartFrame.js",
+        "src/Start.js"
     ]
 }

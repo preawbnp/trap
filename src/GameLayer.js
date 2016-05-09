@@ -12,8 +12,7 @@ var GameLayer = cc.LayerColor.extend({
 
 	this.tap = new Tap();
 	this.tap.setPosition( new cc.Point( screenWidth / (800/270), screenHeight / 1.4 ) );
-	this.addChild ( this.tap );
-    
+	this.addChild ( this.tap ); 
     
     this.scheduleUpdate();
     this.tap.scheduleUpdate();    
@@ -47,8 +46,8 @@ var GameLayer = cc.LayerColor.extend({
 		}
 	}
 	else {
-            console.log('-3-');
-		    this.updateUnpressed();
+        console.log('-3-');
+        this.updateUnpressed();
 	}
 },
 	addKeyboardHandlers: function() {
@@ -68,14 +67,14 @@ var GameLayer = cc.LayerColor.extend({
 	this.textLabelGreat.setPosition( new cc.Point( 652 , 180 ) );
 	this.textLabelGreat.setColor(new cc.Color (83,205,213));
 	this.addChild( this.textLabelGreat );
-	this.textLabelGreat.runAction( cc.fadeTo(1,0)); //time,opacity
+	this.textLabelGreat.runAction( cc.fadeTo(1,0) ); //time,opacity
 },
 	textMiss: function(){
 	this.textLabelMiss = cc.LabelTTF.create( 'MISS!' , 'pix Chicago' , 40 );
 	this.textLabelMiss.setPosition( new cc.Point( 652 , 180 ) );
 	this.textLabelMiss.setColor(new cc.Color (218,212,94));
 	this.addChild( this.textLabelMiss );
-	this.textLabelMiss.runAction( cc.fadeTo(1,0));
+	this.textLabelMiss.runAction( cc.fadeTo(1,0) );
 },
 	updateScore: function(){
 	score += 1;
@@ -92,7 +91,7 @@ var GameLayer = cc.LayerColor.extend({
         this.spacebar.onpress();
     },
     updateUnpressed: function(){
-        this.tap.unscheduleUpdate();
+        this.tap.unscheduleUpdate();                
         this.tap.removeChild();
         this.textMiss();
         this.stopMusic();

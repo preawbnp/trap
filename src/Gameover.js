@@ -3,6 +3,7 @@ var GameOverScene = cc.LayerColor.extend({
         this.frame = new GameOverFrame();
         this.frame.setPosition( new cc.Point( 400 , 300 ) );
         this.addChild( this.frame );
+        
         this.playMusic();
         
         this.score = score;
@@ -19,7 +20,7 @@ var GameOverScene = cc.LayerColor.extend({
         this.addChild( this.endScene );
     },
     playMusic: function(){
-//        cc.audioEngine.playMusic( 'res/effects/hahaha.mp3' );
+        cc.audioEngine.playMusic( 'res/effects/hahaha.mp3' );
     },
     addKeyboardHandlers: function(){
         var self = this;
@@ -32,7 +33,7 @@ var GameOverScene = cc.LayerColor.extend({
     },
     restart: function( keyCode ){
         if ( keyCode == 82 ){
-            cc.director.runScene( new StartScene() );
+            cc.director.runScene( new FirstGame() );
             score = 0;
         }
     }
